@@ -1,235 +1,107 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ÊÓÆµ¼à¿Ø´æ´¢ÈÝÁ¿¼ÆËã</title>
-    <meta http-equiv="content-type" content="text/html; charset=GB18030">
+    <title>è§†é¢‘ç›‘æŽ§å­˜å‚¨å®¹é‡è®¡ç®—</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="/img/favicon.ico"/>
-
-    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
-        <style>
-            table{
-                width:960px;
-                text-align:center;
-                font-family:"Î¢ÈíÑÅºÚ","ºÚÌå";
-                border-collapse:collapse;
-            }
-            caption{
-                font-size:22px;
-                font-weight: bold;
-            }
-            input{
-                width:100%;
-                text-align:center;
-                font-family:"Î¢ÈíÑÅºÚ","ºÚÌå";
-            }
-            .td3{
-                text-align:left;
-            }
-            .countField{
-                background:#eee;
-            }
-            .countFieldInput{
-                background:#eee;
-                border:0px;
-                color:#F00;
-            }
-            .diskSizeGB{
-                width:100px;
-            }
-            .remark{
-                color:#00F;
-            }
-        </style>
-        <script type="text/javascript">
-            var storageSize=0;//´æ´¢ÈÝÁ¿
-            var diskGbSize = 0;//Ó²ÅÌÊµ¼ÊÕÛËãÈÝÁ¿
-            var machineDiskSize = 0;//Ã¿Ì¨Éè±¸ÂúÅäÊµ¼Ê¿ÉÓÃÈÝÁ¿
-            var disk = 0;//ËùÐèÊÓÆµ´æ´¢Ó²ÅÌÊý
-            var dsaCount = 0;//DS-AÉè±¸ÊýÁ¿
-            /**
-            *
-            *¼ÆËãËùÐè´æ´¢ÈÝÁ¿
-            *
-            */
-            function countSize(){
-                var field = ['lineSum','kbps','hours','days'];
-                for(var i=0;i < field.length;i++){
-                    var fieldValue = document.getElementById(field[i]).value;
-                    if(i == 0){
-                        storageSize = fieldValue;
-                    }else{
-                        storageSize *= fieldValue;
-                    }
-                }
-                storageSize = (storageSize*3600/8/1024/1024/1024);
-                document.getElementById('size').value=storageSize.toFixed(2);
-                countDisk();
-                getDsaCount();
-            }
-            
-            /**
-            *
-            *¼ÆËãËùÐèÊÓÆµ´æ´¢Ó²ÅÌÊý
-            *
-            */
-            function countDisk(){
-                var fieldValue = document.getElementById('format').value;
-                var val = storageSize/(1 - fieldValue/100)*1024/diskGbSize;
-                disk = Math.ceil(val);
-                document.getElementById('diskSum').value = disk;
-                countMachineDiskSize();
-            }
-            
-            /**
-            *
-            *¼ÆËãÓ²ÅÌÊµ¼ÊÕÛËãÈÝÁ¿
-            *
-            */
-            function countGB(obj){
-                var val = obj.value/1.024/1.024/1.024;
-                diskGbSize = val;
-                document.getElementById('diskSizeGB').value = diskGbSize.toFixed(2);
-                countDisk();
-                countMachineDiskSize();
-            }
-            
-            /**
-            *
-            *¼ÆËãÃ¿Ì¨Éè±¸ÂúÅäÊµ¼Ê¿ÉÓÃÈÝÁ¿
-            *
-            */
-            function countMachineDiskSize(){
-                var disk = document.getElementById('disk').value;
-                var raidSum = document.getElementById('raidSum').value;
-                var backupDisks = document.getElementById('backupDisks').value;
-                var format = document.getElementById('format').value;
-                var val = (disk - backupDisks - raidSum)*diskGbSize*(1 - format/100)/1024;
-                machineDiskSize = val.toFixed(1);
-                document.getElementById('machineDiskSize').value = machineDiskSize;
-                getDsaCount();
-            }
-            
-            /**
-            *
-            *¼ÆËãÐèÒªDS-AÉè±¸ÊýÁ¿
-            *
-            */
-            function getDsaCount(){
-                var val = storageSize/machineDiskSize;
-                dsaCount = Math.ceil(val);
-                document.getElementById('dsaCount').value = dsaCount;
-                needDiskCount();
-            }
-            
-            /**
-            *
-            *¼ÆËãÊµ¼ÊÐèÒªÓ²ÅÌ
-            *
-            */
-            function needDiskCount(){
-                var raidSum = document.getElementById('raidSum').value;
-                var backupDisks = document.getElementById('backupDisks').value;
-                var val = disk + raidSum* dsaCount + backupDisks* dsaCount;
-                document.getElementById('needDiskCount').value = val;
-            }
-        </script>
+	<link rel="stylesheet" type="text/css" href="../css/demo_sprljs.css">
   </head>
   
   <body>
       <center>
       <form>
           <table border="1" bordercolor="#000000" cellspacing="0">
-              <caption>ÊÓÆµ¼à¿Ø´æ´¢ÈÝÁ¿¼ÆËã</caption>
+              <caption>è§†é¢‘ç›‘æŽ§å­˜å‚¨å®¹é‡è®¡ç®—</caption>
               <tr>
-                  <td width="220">ÊÓÆµ¼à¿ØÂ·Êý</td>
+                  <td width="220">è§†é¢‘ç›‘æŽ§è·¯æ•°</td>
                   <td width="160"><input type="text" name="lineSum" id="lineSum" onblur="countSize()"></td>
-                  <td class="td3">Â·</td>
+                  <td class="td3">è·¯</td>
               </tr>
               <tr>
-                  <td>ÂëÁ÷´óÐ¡</td>
+                  <td>ç æµå¤§å°</td>
                   <td><input type="text" name="kbps"  id="kbps" onblur="countSize()"></td>
                   <td class="td3">Kbps</td>
               </tr>
               <tr>
-                  <td>Ã¿ÌìÂ¼ÏñÊ±¼ä</td>
+                  <td>æ¯å¤©å½•åƒæ—¶é—´</td>
                   <td><input type="text" name="hours" id="hours" onblur="countSize()"></td>
-                  <td class="td3">Ð¡Ê±</td>
+                  <td class="td3">å°æ—¶</td>
               </tr>
               <tr>
-                  <td>±£´æÌìÊý</td>
+                  <td>ä¿å­˜å¤©æ•°</td>
                   <td><input type="text" name="days" id="days" onblur="countSize()"></td>
-                  <td class="td3">Ìì</td>
+                  <td class="td3">å¤©</td>
               </tr>
               <tr class="countField">
-                  <td>ËùÐè´æ´¢ÈÝÁ¿</td>
+                  <td>æ‰€éœ€å­˜å‚¨å®¹é‡</td>
                   <td><input type="text" name="size" id="size" class="countFieldInput" readonly="readonly"></td>
                   <td class="td3">TB</td>
               </tr>
               <tr>
-                  <td>¸ñÊ½»¯ËðÊ§</td>
+                  <td>æ ¼å¼åŒ–æŸå¤±</td>
                   <td><input type="text" name="format" id="format" onblur="countDisk();countMachineDiskSize()"></td>
-                  <td class="td3">%£¨Ò»°ãÎª5%£©</td>
+                  <td class="td3">%ï¼ˆä¸€èˆ¬ä¸º5%ï¼‰</td>
               </tr>
               <tr>
-                  <td>RAID¼¶±ð</td>
+                  <td>RAIDçº§åˆ«</td>
                   <td><input type="text" name="raid" id="raid"></td>
                   <td class="td3">5,6</td>
               </tr>
               <tr class="countField">
-                  <td>Ñ¡ÓÃDS-A´æ´¢Éè±¸</td>
+                  <td>é€‰ç”¨DS-Aå­˜å‚¨è®¾å¤‡</td>
                   <td><input type="text" name="dsa" id="dsa"></td>
                   <td class="td3">A9,A10,A20</td>
               </tr>
               <tr>
-                  <td>Ñ¡ÓÃ´æ´¢ÅÌÎ»</td>
+                  <td>é€‰ç”¨å­˜å‚¨ç›˜ä½</td>
                   <td><input type="text" name="disk" id="disk" onblur="countMachineDiskSize()"></td>
                   <td class="td3">8, 12, 16, 24,48</td>
               </tr>
               <tr class="countField">
-                  <td>Ñ¡ÓÃÓ²ÅÌÈÝÁ¿</td>
+                  <td>é€‰ç”¨ç¡¬ç›˜å®¹é‡</td>
                   <td ><input type="text" name="diskSize" id="diskSize" onblur="countGB(this)" /></td>
-                  <td class="td3"><span>±ê³Æ1TBÓ²ÅÌÊµ¼ÊÕÛËãÈÝÁ¿      </span><input type="text" name="diskSizeGB" id="diskSizeGB" class="countFieldInput diskSizeGB" readonly="readonly" />GB</td>
+                  <td class="td3"><span>æ ‡ç§°1TBç¡¬ç›˜å®žé™…æŠ˜ç®—å®¹é‡      </span><input type="text" name="diskSizeGB" id="diskSizeGB" class="countFieldInput diskSizeGB" readonly="readonly" />GB</td>
               </tr>
               <tr class="countField">
-                  <td>RAID×éÊý/¹ñ</td>
+                  <td>RAIDç»„æ•°/æŸœ</td>
                   <td><input type="text" name="raids" id="raids" ></td>
-                  <td class="td3">8,12,16ÅÌÎ»½¨ÒéÒ»¸öRAID£¬24ÅÌÎ»½¨ÒéÁ½¸öRAID£¬48ÅÌÎ»½¨ÒéÈý¸öRAID</td>
+                  <td class="td3">8,12,16ç›˜ä½å»ºè®®ä¸€ä¸ªRAIDï¼Œ24ç›˜ä½å»ºè®®ä¸¤ä¸ªRAIDï¼Œ48ç›˜ä½å»ºè®®ä¸‰ä¸ªRAID</td>
               </tr>
               <tr>
-                  <td>RAID×éÈßÓàÅÌ×ÜÊý/¹ñ</td>
+                  <td>RAIDç»„å†—ä½™ç›˜æ€»æ•°/æŸœ</td>
                   <td><input type="text" name="raidSum" id="raidSum" onblur="getDsaCount()" /></td>
-                  <td class="td3">¸ö</td>
+                  <td class="td3">ä¸ª</td>
               </tr>
               <tr>
-                  <td>ÈÈ±¸ÅÌÊý</td>
+                  <td>çƒ­å¤‡ç›˜æ•°</td>
                   <td><input type="text" name="backupDisks" id="backupDisks" onblur="countMachineDiskSize()" /></td>
-                  <td class="td3">1:ÓÐÈÈ±¸ÅÌ; 0:Ã»ÓÐÈÈ±¸ÅÌ</td>
+                  <td class="td3">1:æœ‰çƒ­å¤‡ç›˜; 0:æ²¡æœ‰çƒ­å¤‡ç›˜</td>
               </tr>
               <tr class="countField">
-                  <td>ËùÐèÊÓÆµ´æ´¢Ó²ÅÌÊý</td>
+                  <td>æ‰€éœ€è§†é¢‘å­˜å‚¨ç¡¬ç›˜æ•°</td>
                   <td><input type="text" name="diskSum" id="diskSum" class="countFieldInput" readonly="readonly"></td>
-                  <td class="td3">¸ö</td>
+                  <td class="td3">ä¸ª</td>
               </tr>
               <tr class="countField">
-                  <td>Ã¿Ì¨Éè±¸ÂúÅäÊµ¼Ê¿ÉÓÃÈÝÁ¿</td>
+                  <td>æ¯å°è®¾å¤‡æ»¡é…å®žé™…å¯ç”¨å®¹é‡</td>
                   <td><input type="text" name="machineDiskSize" id="machineDiskSize" class="countFieldInput" readonly="readonly"></td>
                   <td class="td3">TB</td>
               </tr>
               <tr class="countField">
-                  <td>ÐèÒªDS-AÉè±¸ÊýÁ¿</td>
+                  <td>éœ€è¦DS-Aè®¾å¤‡æ•°é‡</td>
                   <td><input type="text" name="dsaCount" id="dsaCount" class="countFieldInput" readonly="readonly"></td>
-                  <td class="td3">Ì¨</td>
+                  <td class="td3">å°</td>
               </tr>
               <tr class="countField">
-                  <td>Êµ¼ÊÐèÒªÓ²ÅÌ</td>
+                  <td>å®žé™…éœ€è¦ç¡¬ç›˜</td>
                   <td><input type="text" name="needDiskCount" id="needDiskCount" class="countFieldInput" readonly="readonly"></td>
-                  <td class="td3">¸ö</td>
+                  <td class="td3">ä¸ª</td>
               </tr>
               <tr>
-                  <td colSpan=3 class="remark">×¢£ºÊäÈë¿òÄÚ£¬Îª¸ù¾ÝÏîÄ¿Çé¿ö£¬ÊäÈëµÄ²ÎÊý£»ºì×ÖÎª¹Ø¼ü¼ÆËãÊä³ö¡£</td>
+                  <td colSpan=3 class="remark">æ³¨ï¼šè¾“å…¥æ¡†å†…ï¼Œä¸ºæ ¹æ®é¡¹ç›®æƒ…å†µï¼Œè¾“å…¥çš„å‚æ•°ï¼›çº¢å­—ä¸ºå…³é”®è®¡ç®—è¾“å‡ºã€‚</td>
               </tr>
           </table>
       </form>
       </center>
   </body>
-</html><!--
+</html>
