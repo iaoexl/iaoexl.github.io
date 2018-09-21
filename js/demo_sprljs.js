@@ -1,41 +1,5 @@
-.footer { width:700px; margin:15px auto; padding:2px; text-align:center; } .footer { width:700px; margin:15px auto; padding:2px; text-align:center; } .footer { width:700px; margin:15px auto; padding:2px; text-align:center; } .footer { width:700px; margin:15px auto; padding:2px; text-align:center; } .footer { width:700px; margin:15px auto; padding:2px; text-align:center; } .footer { width:700px; margin:15px auto; padding:2px; text-align:center; }  .footer { width:700px; margin:15px auto; padding:2px; text-align:center; }{ width:700px; margin:15px auto; padding:2px; text-align:center; } width:700px; margin:15px auto; padding:2px; text-align:center;@charset "utf-8";
-/* CSS Document */
+// JavaScript Document
 
-
-            table{
-                width:960px;
-                text-align:center;
-                font-family:"微软雅黑","黑体";
-                border-collapse:collapse;
-            }
-            caption{
-                font-size:22px;
-                font-weight: bold;
-            }
-            input{
-                width:100%;
-                text-align:center;
-                font-family:"微软雅黑","黑体";
-            }
-            .td3{
-                text-align:left;
-            }
-            .countField{
-                background:#eee;
-            }
-            .countFieldInput{
-                background:#eee;
-                border:0px;
-                color:#F00;
-            }
-            .diskSizeGB{
-                width:100px;
-            }
-            .remark{
-                color:#00F;
-            }
-        </style>
-        <script type="text/javascript">
             var storageSize=0;//存储容量
             var diskGbSize = 0;//硬盘实际折算容量
             var machineDiskSize = 0;//每台设备满配实际可用容量
