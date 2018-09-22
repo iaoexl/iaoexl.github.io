@@ -1,0 +1,2 @@
+// JavaScript Document
+function click() {alert('版权所有,禁止复制') }function click1() {if (event.button==2) {alert('版权所有,禁止复制') }}function CtrlKeyDown(){if (event.ctrlKey) {alert('版权所有,禁止复制') }}document.onkeydown=CtrlKeyDown;document.onselectstart=click;document.onmousedown=click1;
